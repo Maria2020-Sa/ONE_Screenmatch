@@ -2,33 +2,33 @@ package com.aluracursos.screenmach.modelos;
 
 import com.aluracursos.screenmach.calculos.Clasificable;
 
+import java.time.LocalDate;
+
 public class Serie extends Titulo implements Clasificable {
     private int temporadas;
     private int episodiosPorTemporada;
     private int minutosPorEpisodio;
+    private int cantidadDeVistas;
 
-    public int getTemporadas() {
-        return temporadas;
+    public Serie(String nombre, LocalDate fechaDeLanzamiento) {
+        super(nombre, fechaDeLanzamiento);
     }
 
     public void setTemporadas(int temporadas) {
         this.temporadas = temporadas;
     }
 
-    public int getEpisodiosPorTemporada() {
-        return episodiosPorTemporada;
-    }
 
     public void setEpisodiosPorTemporada(int episodiosPorTemporada) {
         this.episodiosPorTemporada = episodiosPorTemporada;
     }
 
-    public int getMinutosPorEpisodio() {
-        return minutosPorEpisodio;
-    }
-
     public void setMinutosPorEpisodio(int minutosPorEpisodio) {
         this.minutosPorEpisodio = minutosPorEpisodio;
+    }
+
+    public void setCantidadDeVistas(int cantidadDeVistas) {
+        this.cantidadDeVistas = cantidadDeVistas;
     }
 
     @Override
@@ -38,6 +38,10 @@ public class Serie extends Titulo implements Clasificable {
 
     @Override
     public int getClasificacion() {
-        return 0;
+        if (cantidadDeVistas > 100) {
+            return 4;
+        }else{
+            return 2;
+        }
     }
 }
