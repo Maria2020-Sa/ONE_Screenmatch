@@ -4,17 +4,16 @@ import com.aluracursos.screenmach.modelos.Pelicula;
 import com.aluracursos.screenmach.modelos.Serie;
 import com.aluracursos.screenmach.modelos.Titulo;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
 public class PrincipalConListas {
     public static void main(String[] args) {
-        Pelicula starWars = new Pelicula("Star Wars", LocalDate.of(1977,5,25));
+        Pelicula starWars = new Pelicula("Star Wars", 1977);
         starWars.evalua(6);
-        Serie alquimia = new Serie("Alquimia de Almas",LocalDate.of(2023,6,25));
-        Pelicula miPelicula = new Pelicula("I Robot",LocalDate.of(2024,4,26));
+        Serie alquimia = new Serie("Alquimia de Almas",2023);
+        Pelicula miPelicula = new Pelicula("I Robot",2024);
         miPelicula.evalua(10);
 
         ArrayList<Titulo> lista = new ArrayList<>();

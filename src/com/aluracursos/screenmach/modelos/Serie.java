@@ -2,7 +2,6 @@ package com.aluracursos.screenmach.modelos;
 
 import com.aluracursos.screenmach.calculos.Clasificable;
 
-import java.time.LocalDate;
 
 public class Serie extends Titulo implements Clasificable {
     private int temporadas;
@@ -10,7 +9,7 @@ public class Serie extends Titulo implements Clasificable {
     private int minutosPorEpisodio;
     private int cantidadDeVistas;
 
-    public Serie(String nombre, LocalDate fechaDeLanzamiento) {
+    public Serie(String nombre, int fechaDeLanzamiento) {
         super(nombre, fechaDeLanzamiento);
     }
 

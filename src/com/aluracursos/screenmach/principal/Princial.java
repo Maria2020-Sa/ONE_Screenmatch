@@ -7,12 +7,11 @@ import com.aluracursos.screenmach.modelos.Pelicula;
 import com.aluracursos.screenmach.modelos.Serie;
 import com.aluracursos.screenmach.modelos.Titulo;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Princial {
     public static void main(String[] args) {
-        Pelicula starWars = new Pelicula("Star Wars", LocalDate.of(1977,5,25));
+        Pelicula starWars = new Pelicula("Star Wars", 1977);
         starWars.setDuracionEnMinutos(121);
         starWars.setIncluidoEnElPlan(true);
         starWars.setDirector("Anaquin");
@@ -20,7 +19,7 @@ public class Princial {
         starWars.muestraFichaTecnica();
 
 
-        Serie alquimia = new Serie("Alquimia de Almas",LocalDate.of(2023,6,25));
+        Serie alquimia = new Serie("Alquimia de Almas",2023);
         alquimia.setTemporadas(2);
         alquimia.setEpisodiosPorTemporada(16);
         alquimia.setMinutosPorEpisodio(120);
@@ -52,7 +51,7 @@ public class Princial {
         filtroRecomendacion.filtra((belleza));
 
 
-        Pelicula miPelicula = new Pelicula("I Robot",LocalDate.of(2024,4,26));
+        Pelicula miPelicula = new Pelicula("I Robot",2024);
         miPelicula.setDuracionEnMinutos(120);
         miPelicula.setDirector("Yoyo");
 

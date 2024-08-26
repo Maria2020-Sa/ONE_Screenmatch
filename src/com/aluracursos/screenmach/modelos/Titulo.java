@@ -1,24 +1,42 @@
 package com.aluracursos.screenmach.modelos;
 
-import java.time.LocalDate;
+import com.aluracursos.screenmach.excepcion.ErrorEnConversionDeDuracionException;
+import com.google.gson.annotations.SerializedName;
 
 public class Titulo implements Comparable<Titulo> {
+
     private String nombre;
-    private LocalDate fechaDeLanzamiento;
+    private int fechaDeLanzamiento;
     private boolean incluidoEnElPlan;
     private int sumaDeLasEvaluaciones;
     private int totalDeEvaluaciones;
     private int duracionEnMinutos;
 
-    public Titulo(String nombre, LocalDate fechaDeLanzamiento) {
+    public Titulo(String nombre, int fechaDeLanzamiento) {
         this.nombre = nombre;
         this.fechaDeLanzamiento = fechaDeLanzamiento;
+    }
+
+    public Titulo(TituloOmdb miTituloOmdb) {
+        this.nombre = miTituloOmdb.title();
+        // Obtener el año desde el campo year del objeto miTituloOmdb
+        String yearString = miTituloOmdb.year();
+        // Dividir la cadena usando una expresión regular que maneja diferentes tipos de guiones
+        String[] years = yearString.split("[–-]");
+        // Tomar el primer año y convertirlo a entero
+        this.fechaDeLanzamiento = Integer.parseInt(years[0].trim());
+        if(miTituloOmdb.runtime().contains("N/A")){
+            throw new ErrorEnConversionDeDuracionException("No pude convertir " +
+                    "la duración, porque contiene un N/A");
+        }
+        this.duracionEnMinutos = Integer.valueOf(
+                miTituloOmdb.runtime().substring(0,3).replace(" ", ""));
     }
 
     public String getNombre() {
         return nombre;
     }
-    public LocalDate getFechaDeLanzamiento() {
+    public int getFechaDeLanzamiento() {
         return fechaDeLanzamiento;
     }
 
@@ -53,7 +71,7 @@ public class Titulo implements Comparable<Titulo> {
                 Nombre de la Película: %s
                 Fecha de lanzamientos: %s
                 Duración en minutos: %d minutos
-                ****************************""".formatted(nombre, fechaDeLanzamiento.toString(), getDuracionEnMinutos()));
+                ****************************""".formatted(nombre, fechaDeLanzamiento, getDuracionEnMinutos()));
     }
 
     public void evalua (double nota){
@@ -66,7 +84,9 @@ public class Titulo implements Comparable<Titulo> {
     }
 
     public String toString() {
-        return "Nombre: "+nombre+", Fecha de lanzamiento: "+fechaDeLanzamiento;
+        return "(Nombre: " + nombre + ", " +
+                "Fecha de lanzamiento: " + fechaDeLanzamiento + ", " +
+                "Duración: " + duracionEnMinutos + ")";
     }
 
     @Override
